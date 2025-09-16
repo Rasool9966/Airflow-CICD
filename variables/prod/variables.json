@@ -1,0 +1,11 @@
+{
+    "env": "prod",
+    "gcs_bucket": "airflows-projects-buckets",
+    "bq_project": "arcane-text-472313-v2",
+    "bq_dataset": "flight_data_prod",
+    "tables": {
+      "transformed_table": "transformed_flight_data_prod",
+      "route_insights_table": "route_insights_prod",
+      "origin_insights_table": "origin_insights_prod"
+    }
+  }
