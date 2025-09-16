@@ -4,15 +4,18 @@ import logging
 import argparse
 import sys
 
-logger = logging.basicConfig(level=logging.INFO,
-    format="%(asctime)s - %(levelname)s - %(message)s")
+logging.basicConfig(
+    level=logging.INFO,
+    format="%(asctime)s - %(levelname)s - %(message)s"
+)
+logger = logging.getLogger(__name__)
 
 def main(env,bq_project,bq_dataset,transformed_table,route_insights_table,origin_insights_table):
 
     try:
         spark = (SparkSession.builder.appName("Airflow_Transformations_Job").getOrCreate())
 
-        input_path = f"airflows-projects-buckets/flight-booking-analysis/source-{env}"
+        input_path = f"gs://airflows-projects-buckets/flight-booking-analysis/source-{env}"
         logger.info(f"Input path resolved: {input_path}")
 
         data = spark.read.csv(input_path,inferSchema=True,header=True)
@@ -79,7 +82,7 @@ def main(env,bq_project,bq_dataset,transformed_table,route_insights_table,origin
         sys.exit(1)
 
     finally:
-        
+
         logger.info("Stoping spark app")
 
         # Stop Spark session
