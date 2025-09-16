@@ -51,7 +51,7 @@ jobs:
           gcloud composer environments storage dags import \
             --environment airflow-dev \
             --location us-central1 \
-            --source airflow_job/airflow_job.py
+            --source src/airflow_job/airflow_job.py
 
   upload-to-prod:
     if: github.ref == 'refs/heads/main'
@@ -97,4 +97,4 @@ jobs:
           gcloud composer environments storage dags import \
             --environment airflow-prod \
             --location us-central1 \
-            --source airflow_job/airflow_job.py
+            --source src/airflow_job/airflow_job.py
